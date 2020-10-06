@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { connect } from 'react-redux'
 import { loginUser } from '../../actions/authActions'
+import Register from './Register';
 
 class Login extends Component {
   constructor() {
@@ -14,15 +15,24 @@ class Login extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.auth.isAuthenticated) {
+      this.props.history.push('/dashboard')
+    }
+    if(nextProps.errors) {
+       this.setState({errors: nextProps.errors})
+    }
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
 
-    const user = {
+    const userData = {
       email: this.state.email,
       password: this.state.password
     };
 
-    console.log(user);
+    this.props.loginUser(userData)
   }
 
  onChange = (e) => {
@@ -78,7 +88,7 @@ class Login extends Component {
 }
 
 
-Login.PropTypes = {
+Register.PropTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
