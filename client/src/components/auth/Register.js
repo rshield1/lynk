@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import axios from 'axios';
 import classnames from 'classnames'
+//react container that works with redux connect
+import { connect } from 'react-redux'
+import {registerUser } from '../../actions/authActions';
 
 class Register extends Component {
 
@@ -31,9 +35,11 @@ class Register extends Component {
             password: this.state.password,
             password2: this.state.password2
         }
-        axios.post('/api/users/register', newUser)
-          .then(res => console.log(res.data))
-          .catch(err => this.setState({errors: err.response.data}))
+        //any action we bring in comes through in props
+        this.props.registerUser(newUser)
+        // axios.post('/api/users/register', newUser)
+        //   .then(res => console.log(res.data))
+        //   .catch(err => this.setState({errors: err.response.data}))
 
     }
 
@@ -41,8 +47,13 @@ class Register extends Component {
 
       const { errors } = this.state;
       // const errors = this.state.errors;
+
+      const { user } = this.props.auth;
+
         return (
+          
             <div className="register">
+            {user ? user.name : null}
             <div className="container">
               <div className="row">
                 <div className="col-md-8 m-auto">
@@ -100,5 +111,15 @@ class Register extends Component {
     }
 }
 
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+}
 
-export default Register
+//if we want any of the state into our components, use mape state to props
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
+
+
+export default connect(mapStateToProps, { registerUser })(Register);
