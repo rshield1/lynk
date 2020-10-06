@@ -21,6 +21,18 @@ class Register extends Component {
 
     }
 
+    onSubmit = (e) => {
+        e.preventDefault();
+        const user = {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+            password2: this.state.password2
+        }
+        console.log(user)
+
+    }
+
     render() {
         return (
             <div className="register">
@@ -29,7 +41,7 @@ class Register extends Component {
                 <div className="col-md-8 m-auto">
                   <h1 className="display-4 text-center">Sign Up</h1>
                   <p className="lead text-center">Create your DevConnector account</p>
-                  <form action="create-profile.html">
+                  <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                       <input type="text"
                         className="form-control form-control-lg" 
