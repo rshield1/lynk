@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom';
 import classnames from 'classnames'
 //react container that works with redux connect
 import { connect } from 'react-redux'
@@ -43,7 +44,8 @@ class Register extends Component {
             password2: this.state.password2
         }
         //any action we bring in comes through in props
-        this.props.registerUser(newUser)
+        //allow us to user this.props.history within the action
+        this.props.registerUser(newUser, this.props.history)
     }
 
     render() {
@@ -124,4 +126,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, { registerUser })(Register);
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));
