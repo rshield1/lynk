@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import TextFieldGroup  from '../common/TextFieldGroup'
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
 import { connect } from 'react-redux';
+import { addExperience } from '../../actions/profileActions'
 
 class AddExperience extends Component {
     constructor(props){
@@ -21,8 +22,27 @@ class AddExperience extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+          this.setState({ errors: nextProps.errors });
+        }
+      }
+
     onSubmit = (e) =>{
-        e.preventDefault()
+        e.preventDefault();
+
+        const expData = {
+            company: this.state.company,
+            title: this.state.title,
+            location: this.state.location,
+            from: this.state.from,
+            to: this.state.to,
+            current: this.state.current,
+            description: this.state.description
+          };
+
+          this.props.addExperience(expData, this.props.history);
+      
     }
 
     onChange = (e) =>{
@@ -137,4 +157,4 @@ const mapStateToProps = state => ({
     errrors: state.errors
 })
 
-export default connect(mapStateToProps)(withRouter(AddExperience))
+export default connect(mapStateToProps, { addExperience })(withRouter(AddExperience))
