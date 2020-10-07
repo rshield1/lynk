@@ -27,7 +27,7 @@ class Navbar extends Component {
             <img src={user.avatar} 
             alt={user.name} 
             style={{width: '25px', marginRight: '5px' }} 
-            title="No avatar found" />
+            title="No avatar found" />Logout
           </a>
       </li>
       </ul>
