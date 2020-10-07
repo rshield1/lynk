@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getCurrentProfile } from '../../actions/profileActions'
 import Spinner from '../common/Spinner'
 import { Link } from 'react-router-dom'
+import ProfileActions from './ProfileActions'
 
 class Dashboard extends Component {
 
@@ -22,7 +23,12 @@ class Dashboard extends Component {
         } else {
             //Check if user has profile data
             if (Object.keys(profile).length > 0 ) {
-                dashboardContent = <h4>Display Profile</h4>
+                dashboardContent = (
+                    <div>
+                        <p className="lead text-muted">Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link></p>
+                        <ProfileActions />
+                    </div>
+                )
             } else {
                 //user is logged in but no profile
                 dashboardContent = (
