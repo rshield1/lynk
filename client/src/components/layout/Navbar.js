@@ -49,9 +49,9 @@ class Navbar extends Component {
 
       )
         return (
-            <nav className="navbar navbar-expand-sm navbar-light bg-info mb-4">
+            <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
     <div className="container">
-      <Link className="navbar-brand" to="/"><i class="fas fa-exchange-alt"></i>Lynk</Link>
+      <Link className="navbar-brand" to="/">Lynk</Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
         <span className="navbar-toggler-icon"></span>
       </button>
