@@ -19,10 +19,10 @@ class Landing extends Component {
                   <div className="col-md-12 text-center">
                     <h1 className="display-3 mb-4"><i class="fas fa-exchange-alt"></i>Lynk
                     </h1>
-                    <p className="lead"> Create a profile/portfolio, share posts and lynk with professionals</p>
+                    <p className="lead"> Create a profile, share posts and lynk with professionals</p>
                     <hr />
                     <Link to="register" className="btn btn-lg btn-info mr-2">Sign Up</Link>
-                    <Link to="login" className="btn btn-lg btn-light">Login</Link>
+                    <Link to="login" className="btn btn-lg btn-success">Login</Link>
                   </div>
                 </div>
               </div>
